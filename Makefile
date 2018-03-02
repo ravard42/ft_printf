@@ -5,7 +5,8 @@ NAME = libftprintf.a
 SRC =	srcs/ft_printf.c\
 		srcs/extract_specifier.c\
 		srcs/conv.c\
-		srcs/c_s_conv.c\
+		srcs/c_conv.c\
+		srcs/s_conv.c\
 		srcs/d_conv.c\
 		srcs/oux_conv.c\
 		srcs/bin_conv.c\

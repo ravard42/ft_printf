@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:47:24 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/17 18:24:07 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/02 01:24:03 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+void	putstr(char *str)
 {
 	int	i;
 

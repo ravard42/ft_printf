@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:48:06 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 20:00:32 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/02 05:54:04 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int			conv(const char *s, va_list *va, t_conv const *tab)
 			i += extract_specifier(s + i + 1, &sp);
 			tab[select_conv(tab, &sp)].f(va, &sp);
 		}
+		if (sp.size == -42)
+			return -1;
 	}
 	write_buff_stdout(&sp);
 	return (sp.buff.ret);

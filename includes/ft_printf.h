@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 20:31:23 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/02 02:38:32 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ void				init_spe(t_spe *sp);
 char				*ft_revstr(char *str);
 size_t				ft_strlen(const char *s);
 char				*add_nose(int n, char c, char *buff);
+char				*add_tail(int n, char c, char *buff);
 void				ft_putchar(char c);
-void				ft_putstr(char *str);
+void				putstr(char *str);
 void				put_one_char_buffer(char c, t_spe *sp);
 void				write_buff_stdout(t_spe *sp);
 void				d_verif_space(intmax_t i, t_spe *sp);

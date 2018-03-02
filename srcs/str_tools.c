@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:42:35 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 19:46:46 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/02 02:37:53 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ char			*add_nose(int nb, char c, char *buff)
 	i = len;
 	while (--i >= 0)
 		buff[nb + i] = buff[i];
+	i = -1;
+	while (++i < nb)
+		buff[i] = c;
+	return (buff);
+}
+
+char			*add_tail(int nb, char c, char *buff)
+{
+	int		i;
+
 	i = -1;
 	while (++i < nb)
 		buff[i] = c;
