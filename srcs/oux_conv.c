@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:50:55 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 20:32:20 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 04:35:05 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void			oux_conv(va_list *va, t_spe *sp)
 	size(i, sp, param);
 	preci(sp);
 	width_and_flags(sp, i);
-	sp->buff.len = ft_strlen(sp->buff.b);
+	sp->buff.len += ft_strlen(sp->buff.b + sp->buff.len);
 }

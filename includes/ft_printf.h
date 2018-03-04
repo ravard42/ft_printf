@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/02 02:38:32 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 04:56:48 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_buff
 {
 	char			b[BUFF_SIZE];
 	int				len;
+	int				last_valid_index;
 	int				ret;
 }					t_buff;
 
@@ -75,7 +76,7 @@ char				*rm_multi_space(char *str, char c);
 char				*polarity(char *str, int *sign);
 int					ft_len(char *buf);
 int					ft_power(int x, int n);
-void				ft_exit();
+void				ft_exit(char *error);
 void				ft_memset(char *b, char c, size_t len);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					catch_pos_numb(char *s);

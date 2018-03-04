@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:06:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 20:08:08 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 04:57:07 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			find_type(char *buff, char const *s, t_spe *sp)
 		if (!no_type[j] && (sp->type = s[i]))
 			break ;
 		if (i >= 31)
-			ft_exit();
+			ft_exit("who dare brutalise my printouf?!\n");
 		buff[i] = s[i];
 	}
 	buff[i] = '\0';

@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:29:12 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 19:31:33 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 04:35:49 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void			bin_conv(va_list *va, t_spe *sp)
 	if (BUFF_SIZE - sp->buff.len <= nb_char * 9)
 		write_buff_stdout(sp);
 	bin_disp(va_arg(*va, int), nb_char, sp);
-	sp->buff.len = ft_strlen(sp->buff.b);
+	sp->buff.len += ft_strlen(sp->buff.b + sp->buff.len);
 }

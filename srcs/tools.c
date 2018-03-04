@@ -6,15 +6,15 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:39:46 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/02 01:24:37 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 04:55:50 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_exit(void)
+void			ft_exit(char *error)
 {
-	putstr("who dare brutalise my printouf?!\n");
+	putstr(error);
 	exit(0);
 }
 
@@ -49,7 +49,7 @@ int				catch_pos_numb(char *s)
 	while (s[++i] >= '0' && s[i] <= '9')
 	{
 		if (i >= 31)
-			ft_exit();
+			ft_exit("who dare brutalise my printouf?!\n");
 		buff[i] = s[i];
 	}
 	buff[i] = '\0';

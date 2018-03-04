@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:47:24 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/02 01:24:03 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/04 03:32:09 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	put_one_char_buffer(char c, t_spe *sp)
 
 void	write_buff_stdout(t_spe *sp)
 {
-	sp->buff.ret += sp->buff.len;
+	sp->buff.ret += (sp->size != -42) ? sp->buff.len : 0;
+	sp->buff.len = (sp->size != -42) ? sp->buff.len : sp->buff.last_valid_index;
 	write(1, sp->buff.b, sp->buff.len);
 	ft_memset(sp->buff.b, '\0', sp->buff.len);
 	sp->buff.len = 0;
