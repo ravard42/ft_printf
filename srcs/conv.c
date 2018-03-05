@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:48:06 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 06:01:05 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/05 23:36:31 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,20 @@ static int	select_conv(t_conv const *tab, t_spe *sp)
 	return (i);
 }
 
-int			conv(const char *s, va_list *va, t_conv const *tab)
+static void	init_sp(char *str, t_spe *sp)
+{
+	sp->out = str;
+	ft_memset(sp->buff.b, '\0', BUFF_SIZE);
+	sp->buff.len = 0;
+	sp->buff.ret = 0;
+}
+
+int			conv(char *str, const char *s, va_list *va, t_conv const *tab)
 {
 	int		i;
 	t_spe	sp;
 
-	ft_memset(sp.buff.b, '\0', BUFF_SIZE);
-	sp.buff.len = 0;
-	sp.buff.ret = 0;
+	init_sp(str, &sp);
 	i = -1;
 	while (s[++i])
 	{
@@ -80,6 +86,6 @@ int			conv(const char *s, va_list *va, t_conv const *tab)
 		if (sp.size == -42 && (sp.buff.ret = -1))
 			break ;
 	}
-	write_buff_stdout(&sp);
+	write_buff(&sp);
 	return (sp.buff.ret);
 }

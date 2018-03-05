@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:28:07 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 04:57:49 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/05 23:21:20 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		d_verif_space(intmax_t i, t_spe *sp)
 	if (BUFF_SIZE - sp->buff.len > k)
 		;
 	else if (k < BUFF_SIZE)
-		write_buff_stdout(sp);
+		write_buff(sp);
 	else
 		ft_exit("who dare brutalise my printouf?!\n");
 }
@@ -43,7 +43,7 @@ void		oux_verif_space(uintmax_t i, char b, t_spe *sp)
 	if (BUFF_SIZE - sp->buff.len > k)
 		;
 	else if (k < BUFF_SIZE)
-		write_buff_stdout(sp);
+		write_buff(sp);
 	else
 		ft_exit("who dare brutalise my printouf?!\n");
 }
@@ -56,7 +56,7 @@ void		c_verif_space(char nb_char, t_spe *sp)
 	if (BUFF_SIZE - sp->buff.len > k)
 		;
 	else if (k < BUFF_SIZE)
-		write_buff_stdout(sp);
+		write_buff(sp);
 	else
 		ft_exit("who dare brutalise my printouf?!\n");
 }
@@ -72,7 +72,7 @@ int			s_verif_space(char *str, t_spe *sp)
 		return (1);
 	else if (k < BUFF_SIZE)
 	{
-		write_buff_stdout(sp);
+		write_buff(sp);
 		return (1);
 	}
 	else

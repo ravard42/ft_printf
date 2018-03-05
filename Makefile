@@ -3,6 +3,7 @@ FLAGS = -Wall -Wextra -Werror
 FLAGS =
 NAME = libftprintf.a
 SRC =	srcs/ft_printf.c\
+		srcs/ft_sprintf.c\
 		srcs/extract_specifier.c\
 		srcs/conv.c\
 		srcs/c_conv.c\

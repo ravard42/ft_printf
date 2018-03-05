@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 04:56:48 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/05 23:37:10 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_spe
 	char			size;
 	char			type;
 	t_buff			buff;
-
+	char			*out;
 }					t_spe;
 
 typedef struct		s_conv
@@ -57,8 +57,10 @@ typedef struct		s_conv
 	void			(*f)(va_list *va, t_spe *e);
 }					t_conv;
 
+int					ft_sprintf(char *str, const char *format, ...);
 int					ft_printf(const char *format, ...);
-int					conv(const char *s, va_list *va, t_conv const *tab);
+int					conv(char *str, const char *s, va_list *va,
+						t_conv const *tab);
 void				c_conv(va_list *va, t_spe *sp);
 void				s_conv(va_list *va, t_spe *sp);
 void				d_conv(va_list *va, t_spe *sp);
@@ -88,7 +90,7 @@ char				*add_tail(int n, char c, char *buff);
 void				ft_putchar(char c);
 void				putstr(char *str);
 void				put_one_char_buffer(char c, t_spe *sp);
-void				write_buff_stdout(t_spe *sp);
+void				write_buff(t_spe *sp);
 void				d_verif_space(intmax_t i, t_spe *sp);
 void				oux_verif_space(uintmax_t i, char b, t_spe *sp);
 void				c_verif_space(char nb_char, t_spe *sp);

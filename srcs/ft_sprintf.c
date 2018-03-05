@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/23 02:11:31 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/05 23:19:39 by ravard           ###   ########.fr       */
+/*   Created: 2018/03/05 22:55:22 by ravard            #+#    #+#             */
+/*   Updated: 2018/03/05 23:14:43 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_sprintf(char *str, const char *format, ...)
 {
 	static t_conv const	tab[] = {{"c", &c_conv},
 								{"s", &s_conv},
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 	int					ret;
 
 	va_start(va, format);
-	ret = conv(NULL, format, &va, tab);
+	ret = conv(str, format, &va, tab);
 	va_end(va);
 	return (ret);
 }
