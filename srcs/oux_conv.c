@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:50:55 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 04:35:05 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/06 02:50:53 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static void		width_and_flags(t_spe *sp, int i)
 			sp->buff.b[sp->buff.len] != '0' && (offset = 1))
 		add_nose(1, '0', buff);
 	else if (sp->fl.hash && ((c = sp->type) == 'x' || c == 'X')
-			&& ((buff[0] != '\0' && i) || sp->fl.hash == 2)
-			&& (offset = 2))
+			&& ((buff[0] != '\0' && ft_hexatoi(buff) != 0)
+			|| sp->fl.hash == 2) && (offset = 2))
 	{
 		add_nose(1, c, buff);
 		add_nose(1, '0', buff);

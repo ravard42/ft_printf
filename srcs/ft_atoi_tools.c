@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:33:21 by ravard            #+#    #+#             */
-/*   Updated: 2018/02/28 19:39:20 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/06 02:03:12 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,6 @@ char		*ft_rm_whitespace(char *str)
 		return (str + i);
 	}
 	return (NULL);
-}
-
-char		*rm_multi_space(char *str, char c)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		str[j] = str[i];
-		if (str[i] == c)
-		{
-			while (str[++i] == c)
-				;
-			i--;
-		}
-		i++;
-		j++;
-	}
-	str[j] = '\0';
-	return (str);
 }
 
 char		*polarity(char *str, int *sign)
@@ -69,13 +46,23 @@ char		*polarity(char *str, int *sign)
 	}
 }
 
-int			ft_len(char *buf)
+int			ft_len(char *buf, char mode)
 {
 	int	i;
 
 	i = 0;
-	while (buf[i] >= '0' && buf[i] <= '9')
-		i++;
+	if (mode == 0)
+	{
+		while (buf[i] >= '0' && buf[i] <= '9')
+			i++;
+	}
+	else if (mode == 1)
+	{
+		while ((buf[i] >= '0' && buf[i] <= '9')
+				|| (buf[i] >= 'a' && buf[i] <= 'f')
+				|| (buf[i] >= 'A' && buf[i] <= 'F'))
+			i++;
+	}
 	return (i);
 }
 

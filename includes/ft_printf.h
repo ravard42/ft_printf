@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/05 23:37:10 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/06 02:04:11 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <inttypes.h>
 # include <wchar.h>
 
-# define BUFF_SIZE 200
+# define BUFF_SIZE 1000
 
 typedef struct		s_flags
 {
@@ -73,10 +73,10 @@ void				putstr_buffer(char *str, char *buff);
 void				putnbr_buffer(intmax_t n, char *buff);
 void				putbnbr_buffer(uintmax_t n, char *param, char *buff);
 int					ft_atoi(const char *str);
+int					ft_hexatoi(const char *str);
 char				*ft_rm_whitespace(char *str);
-char				*rm_multi_space(char *str, char c);
 char				*polarity(char *str, int *sign);
-int					ft_len(char *buf);
+int					ft_len(char *buf, char mode);
 int					ft_power(int x, int n);
 void				ft_exit(char *error);
 void				ft_memset(char *b, char c, size_t len);
