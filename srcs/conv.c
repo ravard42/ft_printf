@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:48:06 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/09 11:24:52 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/09 11:54:55 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	select_conv(t_conv const *tab, t_spe *sp)
 static void	init_sp(char *str, t_spe *sp)
 {
 	sp->out = str;
+	sp->outlen = 0;
 	ft_memset(sp->buff.b, '\0', BUFF_SIZE);
 	sp->buff.len = 0;
 	sp->buff.ret = 0;

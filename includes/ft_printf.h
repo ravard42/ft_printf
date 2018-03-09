@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/09 11:25:06 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/09 13:33:34 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <inttypes.h>
 # include <wchar.h>
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 500
 
 typedef struct		s_flags
 {
@@ -49,6 +49,7 @@ typedef struct		s_spe
 	char			type;
 	t_buff			buff;
 	char			*out;
+	int				outlen;
 }					t_spe;
 
 typedef struct		s_conv

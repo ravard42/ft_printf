@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 02:24:31 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 06:06:58 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/09 11:33:00 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static char		*handle_wchar(wchar_t *wstr, t_spe *sp)
 	i[0] = wstrlen(wstr);
 	if (!(utf_8 = (char *)malloc(sizeof(char) * (i[0] * 4 + 1))))
 		ft_exit("soucis de malloc\n");
+	ft_memset(utf_8, 0, i[0] * 4 + 1);
 	i[1] = -1;
 	i[2] = 0;
 	while (++i[1] < i[0])
@@ -87,7 +88,6 @@ static char		*handle_wchar(wchar_t *wstr, t_spe *sp)
 		else if (nb == -1 && (sp->size = -42))
 			break ;
 	}
-	utf_8[i[2]] = '\0';
 	return (utf_8);
 }
 

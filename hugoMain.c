@@ -6,7 +6,7 @@
 /*   By: hmassonn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 16:06:25 by hmassonn          #+#    #+#             */
-/*   Updated: 2018/03/09 11:13:02 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/09 12:17:20 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -600,8 +600,11 @@ int		main()
 	/* Et paf ! Segfault...
 	 *    Pour savoir quels tests ne fonctionnent pas, mettez un exit par ci par la ;-) */
 
+	printf("CPOUCOU\n");
 	ft_printf("%99999999.1d", 5);
+	printf("CPOUCOU2\n");
 	ft_printf("%1.99999999d", 5);
+	printf("CPOUCOU3\n");
 	ft_printf("%99999999.99999999d", 5);
 
 	return (0);
