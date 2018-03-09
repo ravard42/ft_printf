@@ -6,18 +6,18 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:47:24 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/05 23:36:30 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/09 11:26:17 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+static void		ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	putstr(char *str)
+void			my_putstr(char *str)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	putstr(char *str)
 			ft_putchar(str[i]);
 }
 
-void	put_one_char_buffer(char c, t_spe *sp)
+void			put_one_char_buffer(char c, t_spe *sp)
 {
 	if (sp->buff.len == BUFF_SIZE)
 		write_buff(sp);
@@ -38,7 +38,7 @@ void	put_one_char_buffer(char c, t_spe *sp)
 	}
 }
 
-void	write_buff(t_spe *sp)
+void			write_buff(t_spe *sp)
 {
 	int		i;
 

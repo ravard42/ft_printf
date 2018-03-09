@@ -17,7 +17,7 @@ SRC =	srcs/ft_printf.c\
 		srcs/tools.c\
 		srcs/str_tools.c\
 		srcs/write.c\
-		srcs/number.c\
+		srcs/put_buffer.c\
 		srcs/verif_buff_space.c\
 		srcs/utf_32_to_8.c\
 
