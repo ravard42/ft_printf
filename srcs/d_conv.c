@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:49:42 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 04:34:43 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 17:51:59 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			size(intmax_t i, t_spe *sp)
 {
 	char	*buff;
 
-	buff = sp->buff.b + sp->buff.len;
+	buff = sp->buff.b;
 	if (!sp->size)
 		putnbr_buffer((int)i, buff);
 	else if (!ft_memcmp(&sp->size, "H", 1))
@@ -45,7 +45,7 @@ static void			preci(t_spe *sp)
 
 	if (sp->pre != -1)
 	{
-		buff = sp->buff.b + sp->buff.len;
+		buff = sp->buff.b;
 		if (sp->pre == 0 && buff[0] == '0')
 			buff[0] = '\0';
 		else
@@ -74,7 +74,7 @@ static void			width_and_flags(t_spe *sp)
 	int		w;
 	char	c;
 
-	buff = sp->buff.b + sp->buff.len;
+	buff = sp->buff.b;
 	sp->fl.sp = (buff[0] == '-') ? 0 : sp->fl.sp;
 	sp->fl.plu = (buff[0] == '-') ? 0 : sp->fl.plu;
 	if (sp->fl.sp)
@@ -85,7 +85,7 @@ static void			width_and_flags(t_spe *sp)
 	if (w > 0)
 	{
 		if (sp->fl.min)
-			add_nose(w, ' ', buff + ft_strlen(buff));
+			add_tail(w, ' ', buff + ft_strlen(buff));
 		else
 		{
 			c = (sp->fl.ze) ? '0' : ' ';
@@ -101,9 +101,11 @@ void				d_conv(va_list *va, t_spe *sp)
 
 	sp->fl.ze = (sp->pre != -1) ? 0 : sp->fl.ze;
 	i = va_arg(*va, intmax_t);
-	d_verif_space(i, sp);
+	d_malloc(i, sp);
 	size(i, sp);
 	preci(sp);
 	width_and_flags(sp);
-	sp->buff.len += ft_strlen(sp->buff.b + sp->buff.len);
+	sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
+	free(sp->buff.b);
+	sp->buff.b = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:50:55 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/06 02:50:53 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 17:50:29 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		size(uintmax_t i, t_spe *sp, char *param)
 {
 	char	*buff;
 
-	buff = sp->buff.b + sp->buff.len;
+	buff = sp->buff.b;
 	if (!sp->size)
 		putbnbr_buffer((unsigned int)i, param, buff);
 	else if (!ft_memcmp(&sp->size, "H", 1))
@@ -57,7 +57,7 @@ static void		preci(t_spe *sp)
 
 	if (sp->pre != -1)
 	{
-		buff = sp->buff.b + sp->buff.len;
+		buff = sp->buff.b;
 		if (sp->pre == 0 && buff[0] == '0')
 			buff[0] = '\0';
 		else
@@ -69,14 +69,14 @@ static void		preci(t_spe *sp)
 	}
 }
 
-static void		width_and_flags(t_spe *sp, int i)
+static void		width_and_flags(t_spe *sp)
 {
 	char	*buff;
 	char	offset;
 	int		w;
 	char	c;
 
-	buff = sp->buff.b + sp->buff.len;
+	buff = sp->buff.b;
 	offset = 0;
 	if (sp->fl.hash && sp->type == 'o' &&
 			sp->buff.b[sp->buff.len] != '0' && (offset = 1))
@@ -105,9 +105,11 @@ void			oux_conv(va_list *va, t_spe *sp)
 	sp->fl.ze = (sp->pre != -1) ? 0 : sp->fl.ze;
 	set_param(param, sp);
 	i = va_arg(*va, uintmax_t);
-	oux_verif_space(i, param[0], sp);
+	oux_malloc(i, param[0], sp);
 	size(i, sp, param);
 	preci(sp);
-	width_and_flags(sp, i);
-	sp->buff.len += ft_strlen(sp->buff.b + sp->buff.len);
+	width_and_flags(sp);
+	sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
+	free(sp->buff.b);
+	sp->buff.b = NULL;
 }

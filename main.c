@@ -7,11 +7,11 @@ int		main()
 	int			i;
 	char		recup[256] = {0};
 	
-	//printf("%d\n", ft_sprintf(recup, "plop%c coLcou\n%d", '\0', 5));
-	printf("\nprintf : %d\n", ft_printf("plop %c est quoi se bordel %d", 1, 4));
-	//i = ft_printf("%c coucou\n", 0);
-	//printf("printf return %d\n", i);
-	//write(1, recup, ft_sprintf(recup, "plop%c coLcou\n%d", '\0', 5));
-	//printf("sprintf renvoi %d :\n --->%s\n", i, recup);
+	printf("\n%d\n", printf("!%#-2.11zx!", -656523068));
+	printf("\n%d\n", ft_printf("!%#-2.11zx!", -656523068));
+	printf("\n%d\n", printf("!%#-2.11zx!", -656523068));
+	printf("\n%d\n", ft_printf("!%#-2.11zx!", -656523068));
+	printf("\n%d\n", printf("42%#-.11x42", -1855773440));
+	printf("\n%d\n", ft_printf("42%#-.11x42", -1855773440));
 	return 0;
 }

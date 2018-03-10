@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/09 13:33:34 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 17:40:00 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <wchar.h>
 
 # define BUFF_SIZE 500
+# define MARGE 5
 
 typedef struct		s_flags
 {
@@ -34,7 +35,7 @@ typedef struct		s_flags
 
 typedef struct		s_buff
 {
-	char			b[BUFF_SIZE];
+	char			*b;
 	int				len;
 	int				last_valid_index;
 	int				ret;
@@ -48,6 +49,7 @@ typedef struct		s_spe
 	char			size;
 	char			type;
 	t_buff			buff;
+	char			*prv_no_spe;
 	char			*out;
 	int				outlen;
 }					t_spe;
@@ -89,11 +91,13 @@ size_t				ft_strlen(const char *s);
 char				*add_nose(int n, char c, char *buff);
 char				*add_tail(int n, char c, char *buff);
 void				my_putstr(char *str);
+int					no_spe(char const *s, t_spe *sp);
 void				put_one_char_buffer(char c, t_spe *sp);
 void				write_buff(t_spe *sp);
-void				d_verif_space(intmax_t i, t_spe *sp);
-void				oux_verif_space(uintmax_t i, char b, t_spe *sp);
-void				c_verif_space(char nb_char, t_spe *sp);
+char				*buff_malloc(int *offset, char const *s, t_spe *sp);
+void				d_malloc(intmax_t i, t_spe *sp);
+void				oux_malloc(uintmax_t i, char b, t_spe *sp);
+void				c_malloc(char nb_char, t_spe *sp);
 int					s_verif_space(char *str, t_spe *sp);
 int					utf_32_to_8(wchar_t utf_32, char *utf_8);
 #endif

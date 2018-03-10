@@ -6,39 +6,27 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:06:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/04 04:57:07 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 16:32:11 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int			find_type(char *buff, char const *s, t_spe *sp)
+static char				*find_type(int *offset, char const *s, t_spe *sp)
 {
-	static const char	*no_type = "#-+ 0123456789.hljz";
 	int					i;
-	int					j;
+	char				*buff;
 
+	buff = buff_malloc(offset, s, sp);
 	i = -1;
-	while (s[++i])
-	{
-		j = -1;
-		while (no_type[++j])
-			if (s[i] == no_type[j])
-				break ;
-		if (!no_type[j] && (sp->type = s[i]))
-			break ;
-		if (i >= 31)
-			ft_exit("who dare brutalise my printouf?!\n");
+	while (s[++i] != sp->type)
 		buff[i] = s[i];
-	}
 	buff[i] = '\0';
 	sp->type = (sp->type == 'i') ? 'd' : sp->type;
-	if (sp->type == '\0')
-		return (i);
-	return (i + 1);
+	return (buff);
 }
 
-static void			catch_flags(char *s, t_spe *sp)
+static void				catch_flags(char *s, t_spe *sp)
 {
 	int		field;
 	int		i;
@@ -58,7 +46,7 @@ static void			catch_flags(char *s, t_spe *sp)
 	sp->fl.ze = (sp->fl.min) ? 0 : sp->fl.ze;
 }
 
-static void			catch_w_and_pre(char *s, t_spe *sp)
+static void				catch_w_and_pre(char *s, t_spe *sp)
 {
 	int		i;
 	int		w_is_set;
@@ -77,7 +65,7 @@ static void			catch_w_and_pre(char *s, t_spe *sp)
 	}
 }
 
-static void			catch_size(char *s, t_spe *sp)
+static void				catch_size(char *s, t_spe *sp)
 {
 	int		i;
 	int		breakk;
@@ -102,15 +90,16 @@ static void			catch_size(char *s, t_spe *sp)
 	}
 }
 
-int					extract_specifier(char const *s, t_spe *sp)
+int						extract_specifier(char const *s, t_spe *sp)
 {
 	int			offset;
-	char		buff[32];
+	char		*buff;
 
 	init_spe(sp);
-	offset = find_type(buff, s, sp);
+	buff = find_type(&offset, s, sp);
 	catch_flags(buff, sp);
 	catch_w_and_pre(buff, sp);
 	catch_size(buff, sp);
-	return (offset);
+	free(buff);
+	return (offset + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:48:06 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/09 11:54:55 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 17:50:55 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ static int	select_conv(t_conv const *tab, t_spe *sp)
 
 static void	init_sp(char *str, t_spe *sp)
 {
+	sp->buff.b = NULL;
+	sp->buff.ret = 0;
 	sp->out = str;
 	sp->outlen = 0;
-	ft_memset(sp->buff.b, '\0', BUFF_SIZE);
-	sp->buff.len = 0;
-	sp->buff.ret = 0;
 }
 
 int			conv(char *str, const char *s, va_list *va, t_conv const *tab)
@@ -72,21 +71,18 @@ int			conv(char *str, const char *s, va_list *va, t_conv const *tab)
 	t_spe	sp;
 
 	init_sp(str, &sp);
-	i = -1;
-	while (s[++i])
+	i = 0;
+	while (s[i])
 	{
 		if (s[i] != '%')
-			put_one_char_buffer(s[i], &sp);
-		else
+			i += no_spe(s + i, &sp);
+		if (s[i] == '%')
 		{
 			i += extract_specifier(s + i + 1, &sp);
 			tab[select_conv(tab, &sp)].f(va, &sp);
-			if (sp.size != -42)
-				sp.buff.last_valid_index = sp.buff.len;
 		}
 		if (sp.size == -42 && (sp.buff.ret = -1))
 			break ;
 	}
-	write_buff(&sp);
 	return (sp.buff.ret);
 }

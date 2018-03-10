@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:47:24 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/09 12:07:33 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 17:50:47 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ void			my_putstr(char *str)
 	if (str)
 		while (str[++i])
 			ft_putchar(str[i]);
+}
+
+int				no_spe(char const *s, t_spe *sp)
+{
+	int		i;
+
+	i = -1;
+	while (s[++i] && s[i] != '%')
+	{
+		if (sp->out != NULL && (sp->out[sp->outlen] = s[i]))
+			sp->outlen++;
+	}
+	if (sp->out == NULL)
+		sp->buff.ret += write(1, s, i);
+	return (i);
 }
 
 void			put_one_char_buffer(char c, t_spe *sp)
