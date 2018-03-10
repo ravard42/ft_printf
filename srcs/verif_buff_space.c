@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:28:07 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 17:18:37 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 19:43:17 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,14 @@ void		c_malloc(char nb_char, t_spe *sp)
 	ft_memset(sp->buff.b, '\0', k + 1);
 }
 
-int			s_verif_space(char *str, t_spe *sp)
+void		s_malloc(char *str, t_spe *sp)
 {
 	int		k;
 
 	k = (str) ? ft_strlen(str) : ft_strlen("(null)");
 	k = (sp->pre != -1 && sp->pre < k) ? sp->pre : k;
 	k = (sp->w > k) ? sp->w : k;
-	if (BUFF_SIZE - sp->buff.len > k)
-		return (1);
-	else if (k < BUFF_SIZE)
-	{
-		write_buff(sp);
-		return (1);
-	}
-	else
-		ft_exit("who dare brutalise my printouf?!\n");
-	return (0);
+	if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
+		ft_exit("probleme de memoire via s_malloc\n");
+	ft_memset(sp->buff.b, '\0', k + 1);
 }

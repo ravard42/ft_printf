@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 17:40:00 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/10 19:07:53 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ char				*buff_malloc(int *offset, char const *s, t_spe *sp);
 void				d_malloc(intmax_t i, t_spe *sp);
 void				oux_malloc(uintmax_t i, char b, t_spe *sp);
 void				c_malloc(char nb_char, t_spe *sp);
-int					s_verif_space(char *str, t_spe *sp);
+void				s_malloc(char *str, t_spe *sp);
 int					utf_32_to_8(wchar_t utf_32, char *utf_8);
 #endif
