@@ -7,6 +7,7 @@ int		main()
 	int			i;
 	char		recup[256] = {0};
 	
-	ft_printf("!%11.24ls!", L"(null)");
+	printf("\n%d\n", printf("^.^/%48.52ls^.^/", L""));
+	printf("\n%d\n", ft_printf("^.^/%48.52ls^.^/", L""));
 	return 0;
 }

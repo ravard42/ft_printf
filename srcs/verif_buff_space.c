@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:28:07 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 19:43:17 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 07:08:17 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void		s_malloc(char *str, t_spe *sp)
 	int		k;
 
 	k = (str) ? ft_strlen(str) : ft_strlen("(null)");
-	k = (sp->pre != -1 && sp->pre < k) ? sp->pre : k;
-	k = (sp->w > k) ? sp->w : k;
+	k = (sp->w >= k) ? sp->w : k;
 	if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
 		ft_exit("probleme de memoire via s_malloc\n");
 	ft_memset(sp->buff.b, '\0', k + 1);

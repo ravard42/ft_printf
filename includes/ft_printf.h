@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 19:07:53 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 07:16:50 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int					catch_pos_numb(char *s);
 void				init_spe(t_spe *sp);
 char				*ft_revstr(char *str);
 size_t				ft_strlen(const char *s);
+int					wstrlen(wchar_t *wc);
 char				*add_nose(int n, char c, char *buff);
 char				*add_tail(int n, char c, char *buff);
 void				my_putstr(char *str);
