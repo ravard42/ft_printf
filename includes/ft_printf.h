@@ -6,14 +6,12 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 10:28:06 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 14:25:27 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-
-# include <stdio.h>
 
 # include <unistd.h>
 # include <stdlib.h>

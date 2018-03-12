@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:29:12 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 09:36:32 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 14:12:47 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			bin_conv(va_list *va, t_spe *sp)
 	{
 		k = nb_char * 9 + MARGE;
 		if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
-			ft_exit("probleme de memoire via s_malloc\n");
+			ft_exit("probleme de memoire via bin_malloc\n");
 		ft_memset(sp->buff.b, '\0', k + 1);
 	}
 	bin_disp(va_arg(*va, int), nb_char, sp);
