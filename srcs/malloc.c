@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:28:07 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:08:17 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 07:59:09 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		*buff_malloc(int *offset, char const *s, t_spe *sp)
 	static const char	*no_type = "#-+ 0123456789.hljz";
 	int					i[2];
 	char				*buff;
-	
+
 	i[0] = -1;
 	while (s[++i[0]])
 	{
@@ -68,7 +68,7 @@ void		c_malloc(char nb_char, t_spe *sp)
 {
 	int		k;
 
-	k = (sp->w > nb_char) ? sp->w : nb_char;
+	k = (sp->w > nb_char) ? sp->w + MARGE : MARGE;
 	if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
 		ft_exit("probleme de memoire via c_malloc\n");
 	ft_memset(sp->buff.b, '\0', k + 1);
@@ -78,8 +78,8 @@ void		s_malloc(char *str, t_spe *sp)
 {
 	int		k;
 
-	k = (str) ? ft_strlen(str) : ft_strlen("(null)");
-	k = (sp->w >= k) ? sp->w : k;
+	k = (str) ? ft_strlen(str) + MARGE : ft_strlen("(null)") + MARGE;
+	k = (sp->w >= k) ? sp->w + MARGE : k;
 	if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
 		ft_exit("probleme de memoire via s_malloc\n");
 	ft_memset(sp->buff.b, '\0', k + 1);

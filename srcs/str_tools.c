@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:42:35 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:10:49 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 07:58:11 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ char			*ft_revstr(char *str)
 	}
 	return (str);
 }
-
-//char			*my_strncpy(char *dst, const char *src, size_t len)
-//{
-//	size_t	i;
-//
-//	i = -1;
-//	while (++i < len)
-//	{
-//		dst[i] = src[i];
-//		if (!src[i])
-//			break ;
-//	}
-//	dst[i] = '\0';
-//	return (dst);
-//}
 
 char			*add_nose(int nb, char c, char *buff)
 {

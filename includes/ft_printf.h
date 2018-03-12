@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:16:50 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 08:02:35 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <inttypes.h>
 # include <wchar.h>
 
-# define BUFF_SIZE 500
 # define MARGE 5
 
 typedef struct		s_flags
@@ -36,8 +35,6 @@ typedef struct		s_flags
 typedef struct		s_buff
 {
 	char			*b;
-	int				len;
-	int				last_valid_index;
 	int				ret;
 }					t_buff;
 
@@ -49,7 +46,6 @@ typedef struct		s_spe
 	char			size;
 	char			type;
 	t_buff			buff;
-	char			*prv_no_spe;
 	char			*out;
 	int				outlen;
 }					t_spe;
@@ -93,8 +89,6 @@ char				*add_nose(int n, char c, char *buff);
 char				*add_tail(int n, char c, char *buff);
 void				my_putstr(char *str);
 int					no_spe(char const *s, t_spe *sp);
-void				put_one_char_buffer(char c, t_spe *sp);
-void				write_buff(t_spe *sp);
 char				*buff_malloc(int *offset, char const *s, t_spe *sp);
 void				d_malloc(intmax_t i, t_spe *sp);
 void				oux_malloc(uintmax_t i, char b, t_spe *sp);

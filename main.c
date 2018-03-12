@@ -7,7 +7,8 @@ int		main()
 	int			i;
 	char		recup[256] = {0};
 	
-	printf("\n%d\n", printf("^.^/%48.52ls^.^/", L""));
-	printf("\n%d\n", ft_printf("^.^/%48.52ls^.^/", L""));
+	printf("%d\n", ft_printf("%b", 55));
+	printf("%d\n", ft_printf("%lb", -1));
+	
 	return 0;
 }

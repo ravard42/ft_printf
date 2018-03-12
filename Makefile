@@ -18,7 +18,7 @@ SRC =	srcs/ft_printf.c\
 		srcs/str_tools.c\
 		srcs/write.c\
 		srcs/put_buffer.c\
-		srcs/verif_buff_space.c\
+		srcs/malloc.c\
 		srcs/utf_32_to_8.c\
 
 OBJ = $(SRC:.c=.o)
