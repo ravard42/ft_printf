@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:50:55 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:53:40 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 10:37:30 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		size(uintmax_t i, t_spe *sp, char *param)
 {
 	char	*buff;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	if (!sp->size)
 		putbnbr_buffer((unsigned int)i, param, buff);
 	else if (!ft_memcmp(&sp->size, "H", 1))
@@ -57,7 +57,7 @@ static void		preci(t_spe *sp)
 
 	if (sp->pre != -1)
 	{
-		buff = sp->buff.b;
+		buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 		if (sp->pre == 0 && buff[0] == '0')
 			buff[0] = '\0';
 		else
@@ -76,10 +76,10 @@ static void		width_and_flags(t_spe *sp)
 	int		w;
 	char	c;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	offset = 0;
 	if (sp->fl.hash && sp->type == 'o' &&
-			sp->buff.b[0] != '0' && (offset = 1))
+			buff[0] != '0' && (offset = 1))
 		add_nose(1, '0', buff);
 	else if (sp->fl.hash && ((c = sp->type) == 'x' || c == 'X')
 			&& ((buff[0] != '\0' && ft_hexatoi(buff) != 0)
@@ -109,7 +109,5 @@ void			oux_conv(va_list *va, t_spe *sp)
 	size(i, sp, param);
 	preci(sp);
 	width_and_flags(sp);
-	sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
-	free(sp->buff.b);
-	sp->buff.b = NULL;
+	write_spe(sp);
 }

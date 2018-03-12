@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 03:30:05 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 08:02:35 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 10:28:06 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct		s_spe
 	char			type;
 	t_buff			buff;
 	char			*out;
-	int				outlen;
+	int				c_null_conv;
 }					t_spe;
 
 typedef struct		s_conv
@@ -88,7 +88,8 @@ int					wstrlen(wchar_t *wc);
 char				*add_nose(int n, char c, char *buff);
 char				*add_tail(int n, char c, char *buff);
 void				my_putstr(char *str);
-int					no_spe(char const *s, t_spe *sp);
+int					write_no_spe(char const *s, t_spe *sp);
+void				write_spe(t_spe *sp);
 char				*buff_malloc(int *offset, char const *s, t_spe *sp);
 void				d_malloc(intmax_t i, t_spe *sp);
 void				oux_malloc(uintmax_t i, char b, t_spe *sp);

@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 20:03:16 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:35:11 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 09:55:45 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		ft_width_flags(t_spe *sp)
 	char	*buff;
 	int		w;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	w = sp->w - ft_strlen(buff);
 	if (sp->fl.ze && w > 0)
 		add_nose(w, '0', buff);
@@ -33,15 +33,18 @@ static void		ft_width_flags(t_spe *sp)
 void			undefined_conv(va_list *va, t_spe *sp)
 {
 	int		k;
+	char	*buff;
 
-	k = MARGE;
-	k = (sp->w >= k) ? sp->w : k;
-	if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
-		ft_exit("probleme de memoire via s_malloc\n");
-	ft_memset(sp->buff.b, '\0', k + 1);
-	sp->buff.b[0] = sp->type;
+	if (!sp->out)
+	{
+		k = MARGE;
+		k = (sp->w >= k) ? sp->w : k;
+		if (!(sp->buff.b = (char *)malloc(sizeof(char) * (k + 1))))
+			ft_exit("probleme de memoire via s_malloc\n");
+		ft_memset(sp->buff.b, '\0', k + 1);
+	}
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
+	buff[0] = sp->type;
 	ft_width_flags(sp);
-	sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
-	free(sp->buff.b);
-	sp->buff.b = NULL;
+	write_spe(sp);
 }

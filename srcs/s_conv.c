@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 02:24:31 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:16:25 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 09:57:13 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		preci(t_spe *sp)
 	char	*buff;
 	int		i;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	if (sp->pre != -1)
 	{
 		if (ft_strlen(buff) > sp->pre && sp->size != 'l')
@@ -39,7 +39,7 @@ static void		width_and_flags(t_spe *sp)
 	int		w;
 	char	c;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	w = sp->w - ft_strlen(buff);
 	if (w > 0)
 	{
@@ -85,6 +85,7 @@ static void		wide_or_not(va_list *va, char **utf_8, t_spe *sp)
 {
 	char			*str;
 	wchar_t			*wstr;
+	char			*buff;
 
 	str = va_arg(*va, char *);
 	wstr = (wchar_t *)str;
@@ -93,15 +94,17 @@ static void		wide_or_not(va_list *va, char **utf_8, t_spe *sp)
 	{
 		*utf_8 = handle_wchar(wstr, sp);
 		s_malloc(*utf_8, sp);
-		putstr_buffer(*utf_8, sp->buff.b);
+		buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
+		putstr_buffer(*utf_8, buff);
 	}
 	else
 	{
 		s_malloc(str, sp);
+		buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 		if (str == NULL)
-			putstr_buffer("(null)", sp->buff.b);
+			putstr_buffer("(null)", buff);
 		else
-			putstr_buffer(str, sp->buff.b);
+			putstr_buffer(str, buff);
 	}
 }
 
@@ -114,10 +117,8 @@ void			s_conv(va_list *va, t_spe *sp)
 	{
 		preci(sp);
 		width_and_flags(sp);
-		sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
 	}
 	if (utf_8)
 		free(utf_8);
-	free(sp->buff.b);
-	sp->buff.b = NULL;
+	write_spe(sp);
 }

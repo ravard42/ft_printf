@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 02:48:06 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 18:53:30 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 09:25:24 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	init_sp(char *str, t_spe *sp)
 	sp->buff.b = NULL;
 	sp->buff.ret = 0;
 	sp->out = str;
-	sp->outlen = 0;
+	sp->c_null_conv = 0;
 }
 
 int			conv(char *str, const char *s, va_list *va, t_conv const *tab)
@@ -75,7 +75,7 @@ int			conv(char *str, const char *s, va_list *va, t_conv const *tab)
 	while (s[i])
 	{
 		if (s[i] != '%')
-			i += no_spe(s + i, &sp);
+			i += write_no_spe(s + i, &sp);
 		if (s[i] == '%')
 		{
 			i += extract_specifier(s + i + 1, &sp);

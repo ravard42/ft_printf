@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:49:42 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/12 07:37:02 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 09:24:23 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			size(intmax_t i, t_spe *sp)
 {
 	char	*buff;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	if (!sp->size)
 		putnbr_buffer((int)i, buff);
 	else if (!ft_memcmp(&sp->size, "H", 1))
@@ -45,7 +45,7 @@ static void			preci(t_spe *sp)
 
 	if (sp->pre != -1)
 	{
-		buff = sp->buff.b;
+		buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 		if (sp->pre == 0 && buff[0] == '0')
 			buff[0] = '\0';
 		else
@@ -74,7 +74,7 @@ static void			width_and_flags(t_spe *sp)
 	int		w;
 	char	c;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	sp->fl.sp = (buff[0] == '-') ? 0 : sp->fl.sp;
 	sp->fl.plu = (buff[0] == '-') ? 0 : sp->fl.plu;
 	if (sp->fl.sp)
@@ -105,7 +105,5 @@ void				d_conv(va_list *va, t_spe *sp)
 	size(i, sp);
 	preci(sp);
 	width_and_flags(sp);
-	sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
-	free(sp->buff.b);
-	sp->buff.b = NULL;
+	write_spe(sp);
 }

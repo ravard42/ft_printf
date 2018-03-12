@@ -6,7 +6,7 @@
 /*   By: ravard <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 02:24:19 by ravard            #+#    #+#             */
-/*   Updated: 2018/03/10 17:50:35 by ravard           ###   ########.fr       */
+/*   Updated: 2018/03/12 09:56:28 by ravard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		width_and_flags(t_spe *sp)
 	int		w;
 	char	c;
 
-	buff = sp->buff.b;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
 	offset = (buff[0]) ? ft_strlen(buff) : 1;
 	w = sp->w - offset;
 	if (w > 0)
@@ -41,18 +41,12 @@ static int		verif(wchar_t c, t_spe *sp)
 	return (1);
 }
 
-static void		handle_null(char c, t_spe *sp)
-{
-	width_and_flags(sp);
-	sp->buff.ret += (sp->w >= 2) ? write(1, sp->buff.b, sp->w)
-		: write(1, sp->buff.b, 1);
-}
-
 void			c_conv(va_list *va, t_spe *sp)
 {
 	char			utf_8[5];
 	wchar_t			c;
 	char			nb_char;
+	char			*buff;
 
 	ft_memset(utf_8, '\0', 5);
 	c = va_arg(*va, wchar_t);
@@ -61,17 +55,13 @@ void			c_conv(va_list *va, t_spe *sp)
 	if (nb_char == -1 && (sp->size = -42))
 		return ;
 	c_malloc(nb_char, sp);
-	if (!c)
-		handle_null(c, sp);
-	else
-	{
-		if (sp->size == 'l' && MB_CUR_MAX == 4)
-			putstr_buffer(utf_8, sp->buff.b);
-		else
-			putchar_buffer(c, sp->buff.b);
-		width_and_flags(sp);
-		sp->buff.ret += write(1, sp->buff.b, ft_strlen(sp->buff.b));
-	}
-	free(sp->buff.b);
-	sp->buff.b = NULL;
+	buff = (!sp->out) ? sp->buff.b : sp->out + sp->buff.ret;
+	sp->c_null_conv = (!c) ? 1 : 0;
+	if (c && sp->size == 'l' && MB_CUR_MAX == 4)
+		putstr_buffer(utf_8, buff);
+	else if (c)
+		putchar_buffer(c, buff);
+	width_and_flags(sp);
+	write_spe(sp);
+	sp->c_null_conv = 0;
 }
